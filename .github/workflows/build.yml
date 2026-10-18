@@ -26,8 +26,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload Artifacts
+           - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: installers-${{ matrix.os }}
-          path: dist/*
+          path: |
+            dist/*.dmg
+            dist/*.exe
+          if-no-files-found: error
